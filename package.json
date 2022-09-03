@@ -1,0 +1,26 @@
+{
+  "name": "cook-or-book-backend",
+  "version": "1.0.0",
+  "description": "backend for cook-or-book project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codecofee19/cookorbook-backend.git"
+  },
+  "keywords": [
+    "node.js",
+    "javascript",
+    "backend"
+  ],
+  "author": "Harold Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codecofee19/cookorbook-backend/issues"
+  },
+  "homepage": "https://github.com/codecofee19/cookorbook-backend#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.2.10"
+  },
+  "type": "module"
+}
