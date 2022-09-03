@@ -14,27 +14,44 @@ const app = express();
 
 const main = async function(url) {
 
-    const browser = await puppeteer.launch({
-        headless: true
+    let sum = 0;
+    let prices_list = [];
+    const broswer = await puppeteer.launch({headless: true,
+    args: ["--window-size=1920,1080"]});  
+
+    
+    const page = await broswer.newPage();
+
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'
     });
 
-
-
-    const page = await browser.newPage();
+    page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36");
+  
+    console.log(await page.evaluate(() => navigator.userAgent));
+   
+    
 
     await page.goto(url);
+
+    await page.waitForSelector('body');
       
-    
     
     await page.click('body');
 
+
+    
+
     const body = await page.content(); 
+ 
+
+
 
     let $ = load(body);
 
     
-    let prices_list = []
-
+    
+   
 
     $('span').each((_, e) => {
         let row  = $(e).text().replace(/(\s+)/g, ' ');
@@ -44,32 +61,20 @@ const main = async function(url) {
     });
    
 
-    setTimeout(() => {
-        browser.close();
-      }, 7000);
+    await broswer.close();
     
     
-    
+    console.log('test');
 
-
-    const sum = prices_list.reduce((sum, value) => {
+     sum = prices_list.reduce((sum, value) => {
         return sum + value;
     }, 0);
 
-    console.log(sum);
-
-    console.log(prices_list);
-
-    console.log(sum/prices_list.length);
-
-    return +(sum/prices_list.length.toFixed(2));
-
-
- 
-   
+    
     
 
 
+    return +(sum/prices_list.length.toFixed(2));
 }
 
 
