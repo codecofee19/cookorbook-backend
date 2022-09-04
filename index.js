@@ -5,7 +5,7 @@ import {load} from 'cheerio';
 import cors from 'cors';
 import * as puppeteer from 'puppeteer';
 import https from 'https';
-import fs from 'fs';
+
 
 
 const main_point = https;
@@ -108,10 +108,17 @@ app.get('/getprice/:meal/', async (req, res) => {
    
 });
 
-const httpServer = https.createServer({
-    key: fs.readFileSync('C:/Users/xela2/Desktop/cook-or-book/cook-or-book/localhost-key.pem'),
-    cert: fs.readFileSync('C:/Users/xela2/Desktop/cook-or-book/cook-or-book/localhost.pem'),
-  }, app);
+app.get('/', async (req, res) => {
+    res.send('<h1>Welcome to the backend</h1>');
+});
+
+app.get('/favicon.ico', async (req, res) => {
+    res.status(204);
+    res.end();
+});
+
+const httpServer = https.createServer(app);
+
 
 
   httpServer.listen(process.env.port, () => {
