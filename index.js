@@ -4,11 +4,13 @@ import express, { query } from 'express';
 import {load} from 'cheerio';
 import cors from 'cors';
 import * as puppeteer from 'puppeteer';
+import https from 'https';
+import fs from 'fs';
 
 
+const main_point = https;
 
 const app = express();
-
 
 
 
@@ -83,15 +85,14 @@ app.use(cors());
 
 app.get('/getprice/:meal/', async (req, res) => {
   
+    console.log("inside getprice");
     const queries = req.params["meal"];
     
-    let regex = /".*?"/g;
 
     let prices = 0;
-
-    let search = queries.match(regex);
-    for(let q of search) {
-        let query = q.replace(/['"]+/g, '');
+    let search = queries.split(',');
+    console.log(search);
+    for(let query of search) {
         const url = "https://www.walmart.com/search?q=" + query;
         const result = await main(url);
         prices += result;
@@ -107,5 +108,12 @@ app.get('/getprice/:meal/', async (req, res) => {
    
 });
 
-app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.port}`),
-);
+const httpServer = https.createServer({
+    key: fs.readFileSync('C:/Users/xela2/Desktop/cook-or-book/cook-or-book/localhost-key.pem'),
+    cert: fs.readFileSync('C:/Users/xela2/Desktop/cook-or-book/cook-or-book/localhost.pem'),
+  }, app);
+
+
+  httpServer.listen(process.env.port, () => {
+    console.log(`HTTP Server running on port ${process.env.port}`);
+}); 
