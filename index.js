@@ -121,6 +121,6 @@ const httpServer = https.createServer(app);
 
 
 
-  httpServer.listen(process.env.port, () => {
-    console.log(`HTTP Server running on port ${process.env.port}`);
+  httpServer.listen(process.env.PORT, () => {
+    console.log(`HTTP Server running on port ${process.env.PORT}`);
 }); 
