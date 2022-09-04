@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const main_point = https;
+
 
 
 const app = express();
@@ -127,10 +127,6 @@ app.get('/favicon.ico', (req, res) => {
     res.end();
 });
 
-const httpServer = https.createServer(app);
-
-
-
-  httpServer.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`HTTP Server running on port ${process.env.PORT}`);
 }); 
