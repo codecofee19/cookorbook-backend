@@ -5,9 +5,13 @@ import {load} from 'cheerio';
 import cors from 'cors';
 import * as puppeteer from 'puppeteer';
 import https from 'https';
-import serveFavicon from 'serve-favicon'
+import serveFavicon from 'serve-favicon';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const main_point = https;
 
