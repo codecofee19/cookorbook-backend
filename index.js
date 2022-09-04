@@ -17,7 +17,7 @@ const main_point = https;
 
 const app = express();
 
-app.use(serveFavicon(__dirname + '/favicon.ico'));
+app.use(serveFavicon('./favicon.ico'));
 
 
 const main = async function(url) {
