@@ -27,8 +27,8 @@ const main = async function(url) {
     let sum = 0;
     let prices_list = [];
     const broswer = await puppeteer.launch({headless: true,
-    args: ['--window-size=1920,1080',   '--no-sandbox',
-    '--disable-setuid-sandbox']});  
+    args: ["--window-size=1920,1080",   '--no-sandbox',
+    '--disable-setuid-sandbox',]});  
 
     
     const page = await broswer.newPage();
@@ -75,7 +75,7 @@ const main = async function(url) {
     await broswer.close();
     
     
-    console.log('test');
+    console.log(prices_list);
 
      sum = prices_list.reduce((sum, value) => {
         return sum + value;
