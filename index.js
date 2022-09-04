@@ -5,6 +5,7 @@ import {load} from 'cheerio';
 import cors from 'cors';
 import * as puppeteer from 'puppeteer';
 import https from 'https';
+import serveFavicon from 'serve-favicon'
 
 
 
@@ -12,6 +13,7 @@ const main_point = https;
 
 const app = express();
 
+app.use(serveFavicon(__dirname + '/favicon.ico'));
 
 
 const main = async function(url) {
