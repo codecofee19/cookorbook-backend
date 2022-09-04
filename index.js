@@ -108,11 +108,11 @@ app.get('/getprice/:meal/', async (req, res) => {
    
 });
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
     res.send('<h1>Welcome to the backend</h1>');
 });
 
-app.get('/favicon.ico', async (req, res) => {
+app.get('/favicon.ico', (req, res) => {
     res.status(204);
     res.end();
 });
