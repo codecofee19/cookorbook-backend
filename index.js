@@ -115,10 +115,12 @@ app.get('/getprice/:meal/', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
+    console.log(req);
     res.send('<h1>Welcome to the backend</h1>');
 });
 
 app.get('/favicon.ico', (req, res) => {
+    console.log(req);
     res.status(204);
     res.end();
 });
